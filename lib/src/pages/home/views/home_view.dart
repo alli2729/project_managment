@@ -21,6 +21,7 @@ class HomeView extends GetView<HomeController> {
   AppBar _appBar() {
     return AppBar(
       title: const Text('Users'),
+      centerTitle: true,
     );
   }
 
@@ -33,7 +34,7 @@ class HomeView extends GetView<HomeController> {
           user: controller.users[index],
           onTap: () => controller.onPressed(controller.users[index]),
         ),
-        separatorBuilder: (_, __) => const SizedBox(height: 10),
+        separatorBuilder: (_, __) => const SizedBox(height: 16),
       ),
     );
   }

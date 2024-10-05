@@ -14,40 +14,67 @@ class ProjectTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return (isJoined) ? _joinedPrj() : _notJoindPrj();
+  }
+
+  Widget _joinedPrj() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 12),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: Colors.green[100],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          _leftColumn(),
+          _leftRow(),
+        ],
+      ),
+    );
+  }
+
+  Widget _leftRow() {
+    return const Row(
       children: [
-        _texts(),
-        (isJoined) ? _joinedCheck() : _joinButton(),
+        Text('Joined', style: TextStyle(fontSize: 18)),
+        Icon(Icons.check),
       ],
     );
   }
 
-  Widget _texts() {
+  Widget _notJoindPrj() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 12),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        color: Colors.grey[300],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          _leftColumn(),
+          _rightColumn(),
+        ],
+      ),
+    );
+  }
+
+  Widget _leftColumn() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: const TextStyle(fontSize: 18),
-        ),
-        const Text("Description"),
+        Text(title,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        const Text('description', style: TextStyle(fontSize: 14)),
       ],
     );
   }
 
-  Widget _joinedCheck() {
-    return const Row(
+  Widget _rightColumn() {
+    return Column(
       children: [
-        Text(
-          'Already Joined',
-          style: TextStyle(color: Colors.green),
-        ),
-        SizedBox(width: 10),
-        Icon(
-          Icons.check,
-          color: Colors.green,
-        ),
+        _joinButton(),
       ],
     );
   }
@@ -55,16 +82,16 @@ class ProjectTile extends StatelessWidget {
   Widget _joinButton() {
     return InkWell(
       onTap: onJoin,
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(16),
       child: Container(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(14),
           color: Colors.blue,
         ),
         child: const Text(
           'Join',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white, fontSize: 16),
         ),
       ),
     );
