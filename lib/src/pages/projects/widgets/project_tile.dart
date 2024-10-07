@@ -17,6 +17,8 @@ class ProjectTile extends StatelessWidget {
     return (isJoined) ? _joinedPrj() : _notJoindPrj();
   }
 
+  // Widgets __________________________________________________________________
+
   Widget _joinedPrj() {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 12),

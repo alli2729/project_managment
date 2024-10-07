@@ -34,7 +34,7 @@ class HomeView extends GetView<HomeController> {
           user: controller.users[index],
           onTap: () => controller.onPressed(controller.users[index]),
         ),
-        separatorBuilder: (_, __) => const SizedBox(height: 16),
+        separatorBuilder: (_, __) => const SizedBox(height: 14),
       ),
     );
   }

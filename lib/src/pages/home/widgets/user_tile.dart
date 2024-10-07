@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+//
 import '../models/user.dart';
 
 class UserTile extends StatelessWidget {
@@ -18,8 +18,7 @@ class UserTile extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
       child: Container(
-        
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           color: Colors.grey[300],
@@ -48,24 +47,6 @@ class UserTile extends StatelessWidget {
     return Text(
       user.name,
       style: const TextStyle(fontSize: 20),
-    );
-  }
-
-  Widget _viewButton() {
-    return InkWell(
-      borderRadius: BorderRadius.circular(8),
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: Colors.blue,
-        ),
-        child: const Text(
-          'View Projects >',
-          style: TextStyle(fontSize: 14, color: Colors.white),
-        ),
-      ),
     );
   }
 }

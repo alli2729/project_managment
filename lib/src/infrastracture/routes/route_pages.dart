@@ -14,7 +14,7 @@ class RoutePages {
       children: [
         GetPage(
           name: RoutePath.projects,
-          page: () => ProjectView(),
+          page: () => const ProjectView(),
           binding: ProjectBindings(),
         ),
       ],

@@ -1,19 +1,22 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 //
-import '../common/project_bindings.dart';
+import '../../home/models/user.dart';
 import '../models/project.dart';
+import '../../../infrastracture/common/data_base.dart';
 
 class ProjectController extends GetxController {
-  // Variable
+  // Variable _________________________________________________________________
   int idMaker = 1;
-  List<Project> projects = ProjectBindings.projects;
+  List<Project> projects = DataBase.projects;
+  // reciving arguments from home page
+  final User user = Get.arguments ?? '';
 
   // Methods __________________________________________________________________
   bool isJoined(int prjId, int usrId) {
     int index = projects.indexWhere((element) => element.id == prjId);
-    if (projects[index].usersIds.contains(usrId)) {
-      return true;
-    }
+    if (projects[index].usersIds.contains(usrId)) return true;
+
     return false;
   }
 
@@ -25,14 +28,24 @@ class ProjectController extends GetxController {
     Project newPrj = projects[index].copyWith(usersIds: newUserIds);
 
     projects[index] = newPrj;
-  }
 
-  void addProject() {
-    projects.add(Project(id: idMaker, title: 'title $idMaker', usersIds: []));
-    ++idMaker;
+    showSnackbar(usrId, projects[index].title);
   }
 
   void goBack() {
     Get.back();
+  }
+
+  void showSnackbar(int userId, String title) {
+    Get.showSnackbar(
+      GetSnackBar(
+        duration: const Duration(seconds: 2),
+        backgroundColor: Colors.green.shade200,
+        messageText: Text(
+          'User with ID: "$userId" Added to $title',
+          style: const TextStyle(color: Colors.black),
+        ),
+      ),
+    );
   }
 }
