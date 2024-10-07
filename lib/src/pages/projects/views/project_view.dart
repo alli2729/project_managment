@@ -35,6 +35,8 @@ class ProjectView extends GetView<ProjectController> {
                 controller.projects[index].id, controller.user.id),
             onJoin: () => controller.join(
                 controller.projects[index].id, controller.user.id),
+            onDelete: () => controller.remove(
+                controller.projects[index].id, controller.user.id),
           ),
         ),
         separatorBuilder: (_, __) => const SizedBox(height: 10),

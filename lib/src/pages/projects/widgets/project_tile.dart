@@ -6,11 +6,13 @@ class ProjectTile extends StatelessWidget {
     required this.title,
     required this.isJoined,
     required this.onJoin,
+    required this.onDelete,
   });
 
   final String title;
   final bool isJoined;
   final void Function() onJoin;
+  final void Function() onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -29,19 +31,10 @@ class ProjectTile extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _leftColumn(),
-          _leftRow(),
+          _texts(),
+          _deleteButton(),
         ],
       ),
-    );
-  }
-
-  Widget _leftRow() {
-    return const Row(
-      children: [
-        Text('Joined', style: TextStyle(fontSize: 18)),
-        Icon(Icons.check),
-      ],
     );
   }
 
@@ -55,28 +48,20 @@ class ProjectTile extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _leftColumn(),
-          _rightColumn(),
+          _texts(),
+          _joinButton(),
         ],
       ),
     );
   }
 
-  Widget _leftColumn() {
+  Widget _texts() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(title,
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
         const Text('description', style: TextStyle(fontSize: 14)),
-      ],
-    );
-  }
-
-  Widget _rightColumn() {
-    return Column(
-      children: [
-        _joinButton(),
       ],
     );
   }
@@ -93,6 +78,24 @@ class ProjectTile extends StatelessWidget {
         ),
         child: const Text(
           'Join',
+          style: TextStyle(color: Colors.white, fontSize: 16),
+        ),
+      ),
+    );
+  }
+
+  Widget _deleteButton() {
+    return InkWell(
+      onTap: onDelete,
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(14),
+          color: Colors.red.shade300,
+        ),
+        child: const Text(
+          'Delete',
           style: TextStyle(color: Colors.white, fontSize: 16),
         ),
       ),

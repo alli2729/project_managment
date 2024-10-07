@@ -29,20 +29,45 @@ class ProjectController extends GetxController {
 
     projects[index] = newPrj;
 
-    showSnackbar(usrId, projects[index].title);
+    showJoinSnackbar(usrId, projects[index].title);
+  }
+
+  void remove(int prjId, int usrId) {
+    int index = projects.indexWhere((prj) => prj.id == prjId);
+
+    List<int> newUserIds = projects[index].usersIds;
+    newUserIds.remove(usrId);
+    Project newPrj = projects[index].copyWith(usersIds: newUserIds);
+
+    projects[index] = newPrj;
+
+    showRemoveSnackbar(usrId, projects[index].title);
   }
 
   void goBack() {
     Get.back();
   }
 
-  void showSnackbar(int userId, String title) {
+  void showJoinSnackbar(int userId, String title) {
     Get.showSnackbar(
       GetSnackBar(
         duration: const Duration(seconds: 2),
         backgroundColor: Colors.green.shade200,
         messageText: Text(
           'User with ID: "$userId" Added to $title',
+          style: const TextStyle(color: Colors.black),
+        ),
+      ),
+    );
+  }
+
+  void showRemoveSnackbar(int userId, String title) {
+    Get.showSnackbar(
+      GetSnackBar(
+        duration: const Duration(seconds: 2),
+        backgroundColor: Colors.red.shade300,
+        messageText: Text(
+          'User with ID: "$userId" Removed from $title',
           style: const TextStyle(color: Colors.black),
         ),
       ),
