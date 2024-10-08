@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../../../infrastracture/routes/route_names.dart';
 import '../models/user.dart';
 
-class HomeController extends GetxController {
+class UserListController extends GetxController {
   // Variable _________________________________________________________________
   List<User> users = List.generate(
     5,

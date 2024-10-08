@@ -29,9 +29,9 @@ class RoutePages {
       binding: RegisterBindings(),
     ),
     GetPage(
-      name: RoutePath.home,
-      page: () => const HomeView(),
-      binding: HomeBindings(),
+      name: RoutePath.users,
+      page: () => const UserListView(),
+      binding: UserListBindings(),
       children: [
         GetPage(
           name: RoutePath.projects,

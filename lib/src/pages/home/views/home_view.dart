@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
 import '../widgets/user_tile.dart';
 
-class HomeView extends GetView<HomeController> {
-  const HomeView({super.key});
+class UserListView extends GetView<UserListController> {
+  const UserListView({super.key});
 
   @override
   Widget build(BuildContext context) {
