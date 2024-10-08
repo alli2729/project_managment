@@ -46,9 +46,7 @@ class PostView extends GetView<PostController> {
                     const SizedBox(height: 20),
                     _field(),
                     const SizedBox(height: 10),
-                    (controller.post.comments.isNotEmpty)
-                        ? _comments(context)
-                        : const Center(child: Text('-- No Comment --')),
+                    _comments(context),
                   ],
                 ),
               ),
@@ -100,6 +98,7 @@ class PostView extends GetView<PostController> {
           itemBuilder: (context, index) => CommentWidget(
             comment: controller.post.comments[index],
             onRemove: () => controller.removeComment(index),
+            isOwendComment: controller.isOwnedComment(index),
           ),
         ),
       ),

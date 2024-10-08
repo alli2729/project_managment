@@ -7,11 +7,13 @@ class CommentWidget extends StatelessWidget {
     super.key,
     required this.comment,
     required this.onRemove,
+    required this.isOwendComment,
   });
 
   final Comment comment;
   final void Function() onRemove;
-  
+  final bool isOwendComment;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,10 +25,12 @@ class CommentWidget extends StatelessWidget {
             comment.text,
             style: const TextStyle(fontSize: 16),
           ),
-          IconButton(
-            onPressed: onRemove,
-            icon: const Icon(Icons.remove_circle),
-          )
+          (isOwendComment)
+              ? IconButton(
+                  onPressed: onRemove,
+                  icon: const Icon(Icons.remove_circle),
+                )
+              : const SizedBox(),
         ],
       ),
     );

@@ -19,10 +19,14 @@ class HomeView extends GetView<HomeController> {
   //* Widgets __________________________________________________________________
   AppBar _appBar() {
     return AppBar(
-      title: const Text('Posts'),
       centerTitle: true,
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.white,
+      title: const Text('Posts'),
+      leading: IconButton(
+        onPressed: controller.logout,
+        icon: const Icon(Icons.logout),
+      ),
     );
   }
 

@@ -13,8 +13,7 @@ class App extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Project Managment',
-      // todo : change to loading later !
-      initialRoute: RoutePath.home,
+      initialRoute: RoutePath.loading,
       getPages: RoutePages.pages,
     );
   }

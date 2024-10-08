@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 //
+import '../../../infrastracture/routes/route_path.dart';
 import '../../../infrastracture/routes/route_names.dart';
 import '../models/post_model.dart';
 import '../../../infrastracture/common/data_base.dart';
@@ -45,5 +46,9 @@ class HomeController extends GetxController {
   RxInt commentCount(int postId) {
     final int index = posts.indexWhere((post) => post.id == postId);
     return posts[index].comments.length.obs;
+  }
+
+  void logout() {
+    Get.offAllNamed(RoutePath.login);
   }
 }

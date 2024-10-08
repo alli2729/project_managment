@@ -38,7 +38,8 @@ class PostController extends GetxController {
   }
 
   void addComment() {
-    int postIndex = DataBase.posts.indexWhere((post) => post.id == post.id);
+    int postIndex =
+        DataBase.posts.indexWhere((post) => post.id == this.post.id);
     DataBase.posts[postIndex].comments.add(
       Comment(
         senderUsername: username,
@@ -49,7 +50,24 @@ class PostController extends GetxController {
   }
 
   void removeComment(int commentIndex) {
-    int postIndex = DataBase.posts.indexWhere((post) => post.id == post.id);
-    DataBase.posts[postIndex].comments.removeAt(commentIndex);
+    int postIndex =
+        DataBase.posts.indexWhere((post) => post.id == this.post.id);
+    if (DataBase.posts[postIndex].comments[commentIndex].senderUsername ==
+        username) {
+      DataBase.posts[postIndex].comments.removeAt(commentIndex);
+    } else {
+      Get.showSnackbar(GetSnackBar(
+        message: 'Cannot remove other users comments !',
+        backgroundColor: Colors.red.withOpacity(.2),
+        duration: const Duration(seconds: 1),
+      ));
+    }
+  }
+
+  bool isOwnedComment(int commentIndex) {
+    int postIndex =
+        DataBase.posts.indexWhere((post) => post.id == this.post.id);
+    return (DataBase.posts[postIndex].comments[commentIndex].senderUsername ==
+        username);
   }
 }
