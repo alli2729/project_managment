@@ -16,31 +16,34 @@ class DataBase {
     'shayan_zare': 'shz1360',
   };
 
-  static List<PostModel> posts = [
+  static RxList<PostModel> posts = [
     PostModel(
       id: 1,
       photoUrl: 'lib/assets/images/river1.jpg',
       description:
           'very long fucking description very long fucking description very long fucking description very long fucking description',
-      comments: [
-        Comment(senderUsername: 'alli2729', text: 'text'),
-        Comment(senderUsername: 'alli2729', text: 'text'),
-        Comment(senderUsername: 'alli2729', text: 'text'),
-        Comment(senderUsername: 'alli2729', text: 'text'),
-        Comment(senderUsername: 'alli2729', text: 'text'),
-      ],
+      comments: RxList([
+        Comment(senderUsername: 'alli2729', text: '1'),
+        Comment(senderUsername: 'alli2729', text: '2'),
+        Comment(senderUsername: 'alli2729', text: '3'),
+        Comment(senderUsername: 'alli2729', text: '4'),
+        Comment(senderUsername: 'alli2729', text: '5'),
+      ]),
+      likedUsernames: ['alli2729'],
     ),
     PostModel(
       id: 2,
       photoUrl: 'lib/assets/images/river2.jpg',
       description: 'description',
-      comments: [],
+      comments: RxList([]),
+      likedUsernames: [],
     ),
     PostModel(
       id: 3,
       photoUrl: 'lib/assets/images/river3.jpg',
       description: 'description',
       comments: [],
+      likedUsernames: [],
     ),
-  ];
+  ].obs;
 }

@@ -20,7 +20,7 @@ class LoginController extends GetxController {
   void login() {
     if (formKey.currentState?.validate() ?? false) {
       if (DataBase.credintials[userController.text] == passController.text) {
-        Get.offNamed(RoutePath.users);
+        Get.offNamed(RoutePath.home,arguments: userController.text);
       } else {
         Get.showSnackbar(
           GetSnackBar(

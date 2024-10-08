@@ -11,6 +11,7 @@ class CommentWidget extends StatelessWidget {
 
   final Comment comment;
   final void Function() onRemove;
+  
   @override
   Widget build(BuildContext context) {
     return Padding(

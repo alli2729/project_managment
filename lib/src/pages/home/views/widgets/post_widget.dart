@@ -7,12 +7,14 @@ class PostWidget extends StatelessWidget {
     super.key,
     required this.post,
     required this.onLike,
-    required this.onComments,
+    required this.onView,
+    required this.isLiked,
   });
 
   final PostModel post;
   final void Function() onLike;
-  final void Function() onComments;
+  final void Function() onView;
+  final bool isLiked;
 
   @override
   Widget build(BuildContext context) {
@@ -64,12 +66,14 @@ class PostWidget extends StatelessWidget {
     return Row(
       children: [
         InkWell(
-          onTap: () {},
-          child: const Icon(Icons.thumb_up_outlined),
+          onTap: onLike,
+          child: (isLiked)
+              ? const Icon(Icons.thumb_up, color: Colors.blue)
+              : const Icon(Icons.thumb_up_outlined),
         ),
         const SizedBox(width: 10),
         InkWell(
-          onTap: onComments,
+          onTap: onView,
           child: const Icon(Icons.comment_outlined),
         ),
       ],

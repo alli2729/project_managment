@@ -40,7 +40,7 @@ class PostView extends GetView<PostController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buttons(),
+                    _likeButton(),
                     const SizedBox(height: 10),
                     _description(),
                     const SizedBox(height: 20),
@@ -80,30 +80,27 @@ class PostView extends GetView<PostController> {
     );
   }
 
-  Widget _buttons() {
-    return Row(
-      children: [
-        InkWell(
-          onTap: () {},
-          child: const Icon(Icons.thumb_up_outlined),
-        ),
-        const SizedBox(width: 10),
-        InkWell(
-          onTap: () {},
-          child: const Icon(Icons.comment_outlined),
-        ),
-      ],
+  Widget _likeButton() {
+    return Obx(
+      () => InkWell(
+        onTap: controller.onLike,
+        child: (controller.isLiked().value)
+            ? const Icon(Icons.thumb_up, color: Colors.blue)
+            : const Icon(Icons.thumb_up_outlined),
+      ),
     );
   }
 
   Widget _comments(BuildContext context) {
     return SizedBox(
       height: MediaQuery.sizeOf(context).height - 500,
-      child: ListView.builder(
-        itemCount: controller.post.comments.length,
-        itemBuilder: (context, index) => CommentWidget(
-          comment: controller.post.comments[index],
-          onRemove: () {},
+      child: Obx(
+        () => ListView.builder(
+          itemCount: controller.post.comments.length,
+          itemBuilder: (context, index) => CommentWidget(
+            comment: controller.post.comments[index],
+            onRemove: () => controller.removeComment(index),
+          ),
         ),
       ),
     );
@@ -115,7 +112,7 @@ class PostView extends GetView<PostController> {
       decoration: InputDecoration(
         border: const OutlineInputBorder(),
         suffixIcon: IconButton(
-          onPressed: () {},
+          onPressed: controller.addComment,
           icon: const Icon(Icons.send),
         ),
       ),
