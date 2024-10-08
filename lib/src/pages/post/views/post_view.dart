@@ -44,7 +44,11 @@ class PostView extends GetView<PostController> {
                     const SizedBox(height: 10),
                     _description(),
                     const SizedBox(height: 20),
-                    _comments(context),
+                    _field(),
+                    const SizedBox(height: 10),
+                    (controller.post.comments.isNotEmpty)
+                        ? _comments(context)
+                        : const Center(child: Text('-- No Comment --')),
                   ],
                 ),
               ),
@@ -94,12 +98,25 @@ class PostView extends GetView<PostController> {
 
   Widget _comments(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.sizeOf(context).height / 4,
+      height: MediaQuery.sizeOf(context).height - 500,
       child: ListView.builder(
         itemCount: controller.post.comments.length,
         itemBuilder: (context, index) => CommentWidget(
           comment: controller.post.comments[index],
           onRemove: () {},
+        ),
+      ),
+    );
+  }
+
+  Widget _field() {
+    return TextField(
+      controller: controller.controller,
+      decoration: InputDecoration(
+        border: const OutlineInputBorder(),
+        suffixIcon: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.send),
         ),
       ),
     );

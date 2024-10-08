@@ -1,9 +1,9 @@
 class Comment {
-  int sendetId;
+  String senderUsername;
   String text;
 
   Comment({
-    required this.sendetId,
+    required this.senderUsername,
     required this.text,
   });
 }

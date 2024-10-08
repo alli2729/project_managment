@@ -23,11 +23,11 @@ class DataBase {
       description:
           'very long fucking description very long fucking description very long fucking description very long fucking description',
       comments: [
-        Comment(sendetId: 1, text: 'text'),
-        Comment(sendetId: 1, text: 'text'),
-        Comment(sendetId: 1, text: 'text'),
-        Comment(sendetId: 1, text: 'text'),
-        Comment(sendetId: 1, text: 'text'),
+        Comment(senderUsername: 'alli2729', text: 'text'),
+        Comment(senderUsername: 'alli2729', text: 'text'),
+        Comment(senderUsername: 'alli2729', text: 'text'),
+        Comment(senderUsername: 'alli2729', text: 'text'),
+        Comment(senderUsername: 'alli2729', text: 'text'),
       ],
     ),
     PostModel(
