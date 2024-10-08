@@ -8,8 +8,8 @@ import '../../pages/splash/view/splash_view.dart';
 import 'route_path.dart';
 import '../../pages/projects/common/project_bindings.dart';
 import '../../pages/projects/views/project_view.dart';
-import '../../pages/home/common/home_bindings.dart';
-import '../../pages/home/views/home_view.dart';
+import '../../pages/users/common/home_bindings.dart';
+import '../../pages/users/views/home_view.dart';
 
 class RoutePages {
   static List<GetPage> pages = [

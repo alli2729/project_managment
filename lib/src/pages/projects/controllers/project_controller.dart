@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 //
-import '../../home/models/user.dart';
+import '../../users/models/user.dart';
 import '../models/project.dart';
 import '../../../infrastracture/common/data_base.dart';
 
