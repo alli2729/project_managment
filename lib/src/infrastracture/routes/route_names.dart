@@ -6,5 +6,6 @@ class RouteNames {
   static const String projects = '${RoutePath.users}${RoutePath.projects}';
   static const String login = RoutePath.login;
   static const String register = RoutePath.register;
+  static const String home = RoutePath.home;
   // static const String editTodo = '${RoutePath.todo}${RoutePath.editTodo}';
 }

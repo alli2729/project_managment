@@ -4,5 +4,6 @@ class RoutePath {
   static const String projects = '/projects';
   static const String login = '/login';
   static const String register = '/register';
+  static const String home = '/home';
   // static const String editTodo = '/edit-todo';
 }
