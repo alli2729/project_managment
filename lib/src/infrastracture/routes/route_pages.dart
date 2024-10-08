@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
-import 'package:prj/src/pages/login/common/login_bindings.dart';
-import 'package:prj/src/pages/register/views/register_view.dart';
-import 'package:prj/src/pages/splash/common/splash_bindigns.dart';
-import 'package:prj/src/pages/splash/view/splash_view.dart';
+import '../../pages/login/common/login_bindings.dart';
 import '../../pages/login/view/login_view.dart';
 import '../../pages/register/common/register_bindings.dart';
+import '../../pages/register/views/register_view.dart';
+import '../../pages/splash/common/splash_bindigns.dart';
+import '../../pages/splash/view/splash_view.dart';
 import 'route_path.dart';
 import '../../pages/projects/common/project_bindings.dart';
 import '../../pages/projects/views/project_view.dart';

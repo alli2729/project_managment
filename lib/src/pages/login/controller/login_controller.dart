@@ -34,8 +34,10 @@ class LoginController extends GetxController {
   }
 
   Future<void> register() async {
-    List<String> result = await Get.toNamed(RoutePath.register);
-    userController.text = result[0];
-    passController.text = result[1];
+    var result = await Get.toNamed(RoutePath.register);
+    if (result != null) {
+      userController.text = result[0];
+      passController.text = result[1];
+    }
   }
 }
