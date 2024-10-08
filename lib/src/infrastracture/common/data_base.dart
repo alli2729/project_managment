@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
-import 'package:project_managment/src/infrastracture/common/models/comment.dart';
-
+//
 import '../../pages/projects/models/project.dart';
 import '../../pages/home/models/post_model.dart';
 
@@ -13,23 +12,15 @@ class DataBase {
 
   static Map<String, String> credintials = {
     'alli2729': 'password',
-    'shayan_zare': 'shz1360',
   };
 
   static RxList<PostModel> posts = [
     PostModel(
       id: 1,
       photoUrl: 'lib/assets/images/river1.jpg',
-      description:
-          'very long fucking description very long fucking description very long fucking description very long fucking description',
-      comments: RxList([
-        Comment(senderUsername: 'alli2729', text: '1'),
-        Comment(senderUsername: 'alli2729', text: '2'),
-        Comment(senderUsername: 'alli2729', text: '3'),
-        Comment(senderUsername: 'alli2729', text: '4'),
-        Comment(senderUsername: 'alli2729', text: '5'),
-      ]),
-      likedUsernames: ['alli2729'],
+      description: 'description',
+      comments: RxList([]),
+      likedUsernames: [],
     ),
     PostModel(
       id: 2,
@@ -42,7 +33,7 @@ class DataBase {
       id: 3,
       photoUrl: 'lib/assets/images/river3.jpg',
       description: 'description',
-      comments: [],
+      comments: RxList([]),
       likedUsernames: [],
     ),
   ].obs;

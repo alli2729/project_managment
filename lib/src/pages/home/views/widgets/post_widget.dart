@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 //
 import '../../models/post_model.dart';
 
@@ -9,12 +10,14 @@ class PostWidget extends StatelessWidget {
     required this.onLike,
     required this.onView,
     required this.isLiked,
+    required this.commentCount,
   });
 
   final PostModel post;
   final void Function() onLike;
   final void Function() onView;
   final bool isLiked;
+  final RxInt commentCount;
 
   @override
   Widget build(BuildContext context) {
@@ -83,10 +86,15 @@ class PostWidget extends StatelessWidget {
   Widget _comments() {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
-      child: Text(
-        '${post.comments.length} comments ....',
-        style: TextStyle(
-          color: Colors.black.withOpacity(0.6),
+      child: Obx(
+        () => InkWell(
+          onTap: onView,
+          child: Text(
+            '${commentCount.value} comments ....',
+            style: TextStyle(
+              color: Colors.black.withOpacity(0.6),
+            ),
+          ),
         ),
       ),
     );

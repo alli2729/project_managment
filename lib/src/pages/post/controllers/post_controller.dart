@@ -8,8 +8,7 @@ import '../../home/models/post_model.dart';
 class PostController extends GetxController {
   final controller = TextEditingController();
   PostModel post = Get.arguments[0] ?? '';
-  // String username = Get.arguments[1] ?? '';
-  String username = 'alli2729';
+  String username = Get.arguments[1] ?? '';
 
   void onLike() {
     (post.likedUsernames.contains(username)) ? remove() : like();

@@ -5,8 +5,7 @@ import '../models/post_model.dart';
 import '../../../infrastracture/common/data_base.dart';
 
 class HomeController extends GetxController {
-  // final String username = Get.arguments ?? '';
-  final String username = 'alli2729';
+  final String username = Get.arguments ?? '';
   List<PostModel> posts = DataBase.posts;
 
   void onLike(int postId) {
@@ -41,5 +40,10 @@ class HomeController extends GetxController {
   Future<void> onView(int postId) async {
     final int index = posts.indexWhere((post) => post.id == postId);
     Get.toNamed(RouteNames.post, arguments: [posts[index], username]);
+  }
+
+  RxInt commentCount(int postId) {
+    final int index = posts.indexWhere((post) => post.id == postId);
+    return posts[index].comments.length.obs;
   }
 }

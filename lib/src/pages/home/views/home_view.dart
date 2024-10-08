@@ -29,14 +29,18 @@ class HomeView extends GetView<HomeController> {
   Widget _body() {
     return ListView.separated(
       itemCount: controller.posts.length,
-      itemBuilder: (_, index) => Obx(
-        () => PostWidget(
-          post: controller.posts[index],
-          onLike: () => controller.onLike(controller.posts[index].id),
-          onView: () => controller.onView(controller.posts[index].id),
-          isLiked: controller.isLiked(controller.posts[index].id).value,
-        ),
-      ),
+      itemBuilder: (_, index) {
+        int postId = controller.posts[index].id;
+        return Obx(
+          () => PostWidget(
+            post: controller.posts[index],
+            onLike: () => controller.onLike(postId),
+            onView: () => controller.onView(postId),
+            isLiked: controller.isLiked(postId).value,
+            commentCount: controller.commentCount(postId),
+          ),
+        );
+      },
       separatorBuilder: (_, __) => const SizedBox(height: 25),
     );
   }
