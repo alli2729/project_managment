@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 //
-import '../controllers/posts_controller.dart';
+import '../controllers/home_controller.dart';
 import 'widgets/post_widget.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -10,6 +10,7 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.orange.withOpacity(.25),
       appBar: _appBar(),
       body: _body(),
     );
@@ -20,18 +21,20 @@ class HomeView extends GetView<HomeController> {
     return AppBar(
       title: const Text('Posts'),
       centerTitle: true,
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
     );
   }
 
   Widget _body() {
     return ListView.separated(
       itemCount: controller.posts.length,
-      itemBuilder: (context, index) => PostWidget(
+      itemBuilder: (_, index) => PostWidget(
         post: controller.posts[index],
         onLike: controller.onLike,
-        onComments: controller.onComments,
+        onComments: () => controller.onComments(controller.posts[index].id),
       ),
-      separatorBuilder: (context, index) => const SizedBox(height: 12),
+      separatorBuilder: (_, __) => const SizedBox(height: 25),
     );
   }
 }

@@ -5,5 +5,6 @@ class RoutePath {
   static const String login = '/login';
   static const String register = '/register';
   static const String home = '/home';
+  static const String post = '/post';
   // static const String editTodo = '/edit-todo';
 }

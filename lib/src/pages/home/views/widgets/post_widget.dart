@@ -1,0 +1,90 @@
+import 'package:flutter/material.dart';
+//
+import '../../models/post_model.dart';
+
+class PostWidget extends StatelessWidget {
+  const PostWidget({
+    super.key,
+    required this.post,
+    required this.onLike,
+    required this.onComments,
+  });
+
+  final PostModel post;
+  final void Function() onLike;
+  final void Function() onComments;
+
+  @override
+  Widget build(BuildContext context) {
+    return ColoredBox(
+      color: Colors.white,
+      child: Column(
+        children: [
+          _image(),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buttons(),
+                const SizedBox(height: 10),
+                _description(),
+                const SizedBox(height: 10),
+                _comments(),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  //* Widgets _________________________________________________________________
+
+  Widget _image() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12.0),
+      child: Image.asset(
+        post.photoUrl,
+        fit: BoxFit.fitWidth,
+      ),
+    );
+  }
+
+  Widget _description() {
+    return Text(
+      post.description,
+      style: const TextStyle(
+        fontSize: 18,
+      ),
+    );
+  }
+
+  Widget _buttons() {
+    return Row(
+      children: [
+        InkWell(
+          onTap: () {},
+          child: const Icon(Icons.thumb_up_outlined),
+        ),
+        const SizedBox(width: 10),
+        InkWell(
+          onTap: onComments,
+          child: const Icon(Icons.comment_outlined),
+        ),
+      ],
+    );
+  }
+
+  Widget _comments() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Text(
+        '${post.comments.length} comments ....',
+        style: TextStyle(
+          color: Colors.black.withOpacity(0.6),
+        ),
+      ),
+    );
+  }
+}

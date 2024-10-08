@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 import 'route_path.dart';
-import '../../pages/posts/common/posts_bindings.dart';
-import '../../pages/posts/views/posts_view.dart';
+import '../../pages/post/common/post_bindings.dart';
+import '../../pages/post/views/post_view.dart';
+import '../../pages/home/common/posts_bindings.dart';
+import '../../pages/home/views/home_view.dart';
 import '../../pages/login/common/login_bindings.dart';
 import '../../pages/login/view/login_view.dart';
 import '../../pages/register/common/register_bindings.dart';
@@ -15,37 +17,45 @@ import '../../pages/users/views/home_view.dart';
 
 class RoutePages {
   static List<GetPage> pages = [
-    // loading page (Splash)
+    //* loading page (Splash)
     GetPage(
       name: RoutePath.loading,
       page: () => const SplashView(),
       binding: SplashBindigns(),
     ),
-    // Login Page
+    //* Login Page
     GetPage(
       name: RoutePath.login,
       page: () => const LoginView(),
       binding: LoginBindings(),
     ),
-    // Register Page
+    //* Register Page
     GetPage(
       name: RoutePath.register,
       page: () => const RegisterView(),
       binding: RegisterBindings(),
     ),
-    // Home Page
+    //* Home Page
     GetPage(
       name: RoutePath.home,
       page: () => const HomeView(),
       binding: HomeBindings(),
+      children: [
+        //* Post Page
+        GetPage(
+          name: RoutePath.post,
+          page: () => const PostView(),
+          binding: PostBindings(),
+        )
+      ],
     ),
-    // Users Page
+    //* Users Page
     GetPage(
       name: RoutePath.users,
       page: () => const UserListView(),
       binding: UserListBindings(),
       children: [
-        // Projects Page
+        //* Projects Page
         GetPage(
           name: RoutePath.projects,
           page: () => const ProjectView(),
