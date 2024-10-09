@@ -6,32 +6,16 @@ import '../../../infrastracture/common/models/comment.dart';
 import '../../home/models/post_model.dart';
 
 class PostController extends GetxController {
+  PostController() {
+    like = isLiked();
+  }
+
   final controller = TextEditingController();
   PostModel post = Get.arguments[0] ?? '';
   String username = Get.arguments[1] ?? '';
+  late RxBool like;
 
-  void onLike() {
-    (post.likedUsernames.contains(username)) ? remove() : like();
-    refresh();
-  }
-
-  void like() {
-    PostModel newPost = post;
-    List<String> newUsernames = newPost.likedUsernames;
-    newUsernames.add(username);
-    newPost = newPost.copyWith(likedUsernames: newUsernames);
-    post = newPost;
-    refresh();
-  }
-
-  void remove() {
-    PostModel newPost = post;
-    List<String> newUsernames = newPost.likedUsernames;
-    newUsernames.remove(username);
-    newPost = newPost.copyWith(likedUsernames: newUsernames);
-    post = newPost;
-    refresh();
-  }
+  void onLike() => like.toggle();
 
   RxBool isLiked() {
     return post.likedUsernames.contains(username).obs;
@@ -70,4 +54,6 @@ class PostController extends GetxController {
     return (DataBase.posts[postIndex].comments[commentIndex].senderUsername ==
         username);
   }
+
+  void back() => Get.back(result: like.value);
 }

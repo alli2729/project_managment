@@ -40,7 +40,11 @@ class HomeController extends GetxController {
 
   Future<void> onView(int postId) async {
     final int index = posts.indexWhere((post) => post.id == postId);
-    Get.toNamed(RouteNames.post, arguments: [posts[index], username]);
+    final result =
+        await Get.toNamed(RouteNames.post, arguments: [posts[index], username]);
+    if (result != null) {
+      (result) ? like(index) : remove(index);
+    }
   }
 
   RxInt commentCount(int postId) {

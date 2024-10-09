@@ -9,55 +9,49 @@ class PostView extends GetView<PostController> {
     super.key,
   });
 
+  final double padding = 12;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orange.withOpacity(.1),
       appBar: _appBar(),
       body: _body(context),
     );
   }
 
+  //* Widgets _________________________________________________________________
+
   AppBar _appBar() {
     return AppBar(
-      title: const Text('Post'),
+      automaticallyImplyLeading: false,
+      leading: IconButton(
+        onPressed: controller.back,
+        icon: const Icon(Icons.arrow_back_ios_new),
+      ),
       centerTitle: true,
-      backgroundColor: Colors.white,
+      title: const Text('Post'),
     );
   }
 
   Widget _body(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        ColoredBox(
-          color: Colors.white,
-          child: Column(
-            children: [
-              _image(),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _likeButton(),
-                    const SizedBox(height: 10),
-                    _description(),
-                    const SizedBox(height: 20),
-                    _field(),
-                    const SizedBox(height: 10),
-                    _comments(context),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        )
-      ],
+    return Expanded(
+      flex: 4,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _image(),
+          const SizedBox(height: 6),
+          _likeButton(),
+          const SizedBox(height: 10),
+          _description(),
+          const SizedBox(height: 20),
+          _field(),
+          const SizedBox(height: 10),
+          Expanded(flex: 1, child: _comments(context)),
+        ],
+      ),
     );
   }
-
-  //* Widgets _________________________________________________________________
 
   Widget _image() {
     return Padding(
@@ -70,49 +64,55 @@ class PostView extends GetView<PostController> {
   }
 
   Widget _description() {
-    return Text(
-      controller.post.description,
-      style: const TextStyle(
-        fontSize: 18,
+    return Padding(
+      padding: EdgeInsets.all(padding),
+      child: Text(
+        controller.post.description,
+        style: const TextStyle(
+          fontSize: 18,
+        ),
       ),
     );
   }
 
   Widget _likeButton() {
-    return Obx(
-      () => InkWell(
-        onTap: controller.onLike,
-        child: (controller.isLiked().value)
-            ? const Icon(Icons.thumb_up, color: Colors.blue)
-            : const Icon(Icons.thumb_up_outlined),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: padding),
+      child: Obx(
+        () => InkWell(
+          onTap: controller.onLike,
+          child: (controller.like.value)
+              ? const Icon(Icons.heart_broken, color: Colors.blue)
+              : const Icon(Icons.heart_broken_outlined),
+        ),
       ),
     );
   }
 
   Widget _comments(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.sizeOf(context).height - 500,
-      child: Obx(
-        () => ListView.builder(
-          itemCount: controller.post.comments.length,
-          itemBuilder: (context, index) => CommentWidget(
-            comment: controller.post.comments[index],
-            onRemove: () => controller.removeComment(index),
-            isOwendComment: controller.isOwnedComment(index),
-          ),
+    return Obx(
+      () => ListView.builder(
+        itemCount: controller.post.comments.length,
+        itemBuilder: (context, index) => CommentWidget(
+          comment: controller.post.comments[index],
+          onRemove: () => controller.removeComment(index),
+          isOwendComment: controller.isOwnedComment(index),
         ),
       ),
     );
   }
 
   Widget _field() {
-    return TextField(
-      controller: controller.controller,
-      decoration: InputDecoration(
-        border: const OutlineInputBorder(),
-        suffixIcon: IconButton(
-          onPressed: controller.addComment,
-          icon: const Icon(Icons.send),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: padding),
+      child: TextField(
+        controller: controller.controller,
+        decoration: InputDecoration(
+          border: const OutlineInputBorder(),
+          suffixIcon: IconButton(
+            onPressed: controller.addComment,
+            icon: const Icon(Icons.send),
+          ),
         ),
       ),
     );

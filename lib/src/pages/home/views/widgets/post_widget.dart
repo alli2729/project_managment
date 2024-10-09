@@ -21,26 +21,23 @@ class PostWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ColoredBox(
-      color: Colors.white,
-      child: Column(
-        children: [
-          _image(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buttons(),
-                const SizedBox(height: 10),
-                _description(),
-                const SizedBox(height: 10),
-                _comments(),
-              ],
-            ),
+    return Column(
+      children: [
+        _image(),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buttons(),
+              const SizedBox(height: 10),
+              _description(),
+              const SizedBox(height: 10),
+              _comments(),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -71,8 +68,8 @@ class PostWidget extends StatelessWidget {
         InkWell(
           onTap: onLike,
           child: (isLiked)
-              ? const Icon(Icons.thumb_up, color: Colors.blue)
-              : const Icon(Icons.thumb_up_outlined),
+              ? const Icon(Icons.heart_broken, color: Colors.blue)
+              : const Icon(Icons.heart_broken_outlined),
         ),
         const SizedBox(width: 10),
         InkWell(
